@@ -1,0 +1,55 @@
+---
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>特定商取引法に基づく表記 | Digital Sales Starter Kit</title>
+  <link rel="canonical" href="/legal/tokushoho" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <Header />
+  <main class="legal-page">
+    <div class="legal-container">
+      <h1>特定商取引法に基づく表記</h1>
+      <p class="legal-notice">
+        以下はテンプレートです。実際の販売前に正確な情報に書き換えてください。
+        本記載は法務助言ではありません。
+      </p>
+
+      <table class="legal-table">
+        <tr><th>販売事業者</th><td>【事業者名・屋号を記載】</td></tr>
+        <tr><th>代表者</th><td>【氏名を記載】</td></tr>
+        <tr><th>所在地</th><td>【住所を記載 / 特定商取引法の規定により請求があった場合に遅滞なく開示します】</td></tr>
+        <tr><th>電話番号</th><td>【電話番号 / 特定商取引法の規定により請求があった場合に遅滞なく開示します】</td></tr>
+        <tr><th>メールアドレス</th><td>your-email@example.com</td></tr>
+        <tr><th>販売URL</th><td>https://your-site.pages.dev</td></tr>
+        <tr><th>商品の名称</th><td>デジタル販売スターターキット（日本語版）</td></tr>
+        <tr><th>販売価格</th><td>各販売ページに表示の価格（税込）</td></tr>
+        <tr><th>送料</th><td>デジタルコンテンツのため送料は発生しません</td></tr>
+        <tr><th>支払方法</th><td>各販売プラットフォームが対応する支払方法（クレジットカード等）</td></tr>
+        <tr><th>支払時期</th><td>購入時にお支払いいただきます</td></tr>
+        <tr><th>商品の引き渡し時期</th><td>決済完了後、即時ダウンロード可能</td></tr>
+        <tr><th>返品・キャンセル</th><td>デジタルコンテンツの性質上、購入後の返金・キャンセルは原則対応しておりません。ただし、ファイルに重大な問題がある場合は個別にご相談ください。</td></tr>
+        <tr><th>動作環境</th><td>Node.js 22以上、pnpm 9以上、GitHubアカウント、Cloudflareアカウント（無料）</td></tr>
+      </table>
+    </div>
+  </main>
+  <Footer />
+</body>
+</html>
+
+<style>
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #111; }
+  .legal-page { padding: 2rem 1.5rem; }
+  .legal-container { max-width: 800px; margin: 0 auto; }
+  h1 { font-size: 1.75rem; margin-bottom: 1rem; }
+  .legal-notice { background: #fef3c7; border: 1px solid #f59e0b; border-radius: 8px; padding: 0.75rem 1rem; color: #92400e; margin-bottom: 1.5rem; }
+  .legal-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  .legal-table th, .legal-table td { border: 1px solid #e5e7eb; padding: 0.75rem; text-align: left; vertical-align: top; }
+  .legal-table th { background: #f9fafb; width: 30%; font-weight: 600; white-space: nowrap; }
+</style>

@@ -1,0 +1,29 @@
+{
+  "name": "digital-sales-starter-kit",
+  "version": "0.1.0",
+  "private": true,
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "pnpm gen && astro build",
+    "preview": "astro preview",
+    "gen": "tsx scripts/gen.ts",
+    "gen:marketplace": "tsx scripts/gen-marketplace.ts",
+    "gen:social": "tsx scripts/gen-social.ts",
+    "gen:seo": "tsx scripts/gen-seo.ts",
+    "lint": "tsc --noEmit",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "astro": "^4.16.0",
+    "js-yaml": "^4.1.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241127.0",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

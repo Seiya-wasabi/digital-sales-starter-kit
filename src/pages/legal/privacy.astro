@@ -1,0 +1,58 @@
+---
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>プライバシーポリシー | Digital Sales Starter Kit</title>
+  <link rel="canonical" href="/legal/privacy" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <Header />
+  <main class="legal-page">
+    <div class="legal-container">
+      <h1>プライバシーポリシー</h1>
+      <p class="legal-notice">テンプレートです。実際の運用に合わせて修正してください。</p>
+      <p class="updated">最終更新: 2026-03-13</p>
+
+      <h2>収集する情報</h2>
+      <p>本サイトはデフォルトでは個人識別情報（氏名・メールアドレス・IPアドレス等）を収集しません。</p>
+      <p>クリック計測（/go エンドポイント）では以下のみを記録します：</p>
+      <ul>
+        <li>商品スラッグ（product）</li>
+        <li>チャネル名（channel）</li>
+        <li>参照元（ref）</li>
+        <li>日付（YYYY-MM-DD）</li>
+      </ul>
+      <p>IPアドレス・ユーザーエージェントは保存しません。</p>
+
+      <h2>Cloudflare Web Analytics</h2>
+      <p>本サイトはCloudflare Web Analyticsを使用する場合があります。
+      同サービスはCookieを使用せず、IPアドレスを収集しないプライバシーファーストな設計です。</p>
+
+      <h2>Cookieについて</h2>
+      <p>本サイト自体はCookieを使用しません。購入先プラットフォーム（BOOTH/Gumroad等）はそれぞれのポリシーに従います。</p>
+
+      <h2>お問い合わせ</h2>
+      <p><a href="/contact">お問い合わせページ</a>よりご連絡ください。</p>
+    </div>
+  </main>
+  <Footer />
+</body>
+</html>
+
+<style>
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #111; }
+  .legal-page { padding: 2rem 1.5rem; }
+  .legal-container { max-width: 800px; margin: 0 auto; }
+  h1 { font-size: 1.75rem; }
+  h2 { font-size: 1.15rem; margin-top: 2rem; }
+  .legal-notice { background: #fef3c7; border: 1px solid #f59e0b; border-radius: 8px; padding: 0.75rem 1rem; color: #92400e; }
+  .updated { color: #9ca3af; font-size: 0.85rem; }
+  p, li { color: #374151; line-height: 1.8; }
+  ul { padding-left: 1.5rem; }
+</style>

@@ -1,0 +1,71 @@
+---
+import type { Product } from '../lib/config';
+import { getActiveChannels, getHighMarginChannel } from '../lib/config';
+
+interface Props {
+  product: Product;
+  ref?: string;
+}
+const { product, ref = 'lp' } = Astro.props;
+const active = getActiveChannels(product.channels);
+const hasChannels = Object.keys(active).length > 0;
+const highMargin = getHighMarginChannel(product.channels);
+
+function buildGoUrl(channel?: string): string {
+  const params = new URLSearchParams({ product: product.slug, ref });
+  if (channel) params.set('channel', channel);
+  return `/go?${params.toString()}`;
+}
+---
+<div class="cta-wrapper">
+  {hasChannels ? (
+    <div class="cta-buttons">
+      <a href={buildGoUrl()} class="cta-primary">
+        今すぐ購入 — {product.price_display}
+      </a>
+      {highMargin && (
+        <a href={buildGoUrl('stripe')} class="cta-secondary">
+          Stripeで購入（高粗利）
+        </a>
+      )}
+    </div>
+  ) : (
+    <div class="cta-coming-soon">
+      <p>近日公開予定です。SNSをフォローしてお待ちください。</p>
+    </div>
+  )}
+  <p class="cta-note">
+    ※ ご購入はBOOTH / note / Gumroad / BASE / Stripe のいずれかに遷移します。<br />
+    　 各プラットフォームのポリシーに従ってご利用ください。
+  </p>
+</div>
+
+<style>
+  .cta-wrapper { margin: 2rem 0; }
+  .cta-buttons { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 0.75rem; }
+  .cta-primary {
+    display: inline-block;
+    background: #2563eb;
+    color: #fff;
+    padding: 0.85rem 2rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.05rem;
+    transition: background 0.2s;
+  }
+  .cta-primary:hover { background: #1d4ed8; }
+  .cta-secondary {
+    display: inline-block;
+    border: 2px solid #2563eb;
+    color: #2563eb;
+    padding: 0.85rem 1.75rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  .cta-secondary:hover { background: #eff6ff; }
+  .cta-note { font-size: 0.78rem; color: #9ca3af; margin-top: 0.5rem; }
+  .cta-coming-soon { padding: 1rem; background: #f3f4f6; border-radius: 8px; color: #6b7280; }
+</style>

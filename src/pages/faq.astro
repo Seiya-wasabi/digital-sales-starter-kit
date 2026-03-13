@@ -1,0 +1,100 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import productsData from '../generated/products.json';
+import { ConfigSchema } from '../lib/config';
+import { buildFaqJsonLd } from '../lib/seo';
+
+const config = ConfigSchema.parse(productsData);
+const allFaqs = config.products.flatMap(p => p.faq);
+const faqJsonLd = buildFaqJsonLd(allFaqs);
+
+const generalFaqs = [
+  {
+    q: 'どこにデプロイすればよいですか？',
+    a: 'Cloudflare Pagesを推奨します。GitHubリポジトリを連携するだけで自動デプロイできます。詳しくはREADMEをご覧ください。',
+  },
+  {
+    q: '無料プランで始められますか？',
+    a: 'はい。Cloudflare Pages Free、Workers KV Free、Web Analytics（無料）だけで成立します。',
+  },
+  {
+    q: '複数商品は管理できますか？',
+    a: 'はい。config/products.yamlにproductsを追加するだけで複数商品に対応します。',
+  },
+  {
+    q: 'クリックデータはどこに保存されますか？',
+    a: 'Cloudflare Workers KVに保存されます。IPアドレスやユーザーエージェントは保存しない設計です。',
+  },
+  {
+    q: '法的書類（特商法など）のサポートはありますか？',
+    a: '本キットにはテンプレートを同梱していますが、法務助言は含みません。必ず専門家にご確認ください。',
+  },
+];
+---
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ | Digital Sales Starter Kit</title>
+  <meta name="description" content="Digital Sales Starter Kitに関するよくある質問をまとめています。" />
+  <link rel="canonical" href="/faq" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+</head>
+<body>
+  <Header />
+  <main class="faq-page">
+    <div class="faq-container">
+      <h1>よくある質問（FAQ）</h1>
+      <p class="faq-intro">ご不明な点があれば<a href="/contact">お問い合わせ</a>ください。</p>
+
+      <section>
+        <h2>全般</h2>
+        <dl class="faq-list">
+          {generalFaqs.map(item => (
+            <div class="faq-item">
+              <dt>{item.q}</dt>
+              <dd>{item.a}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      {config.products.map(product => (
+        <section>
+          <h2>{product.title}</h2>
+          <dl class="faq-list">
+            {product.faq.map(item => (
+              <div class="faq-item">
+                <dt>{item.q}</dt>
+                <dd>{item.a}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      ))}
+    </div>
+  </main>
+  <Footer />
+</body>
+</html>
+
+<style>
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #111; }
+  .faq-page { padding: 2rem 1.5rem; }
+  .faq-container { max-width: 800px; margin: 0 auto; }
+  h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+  .faq-intro { color: #6b7280; margin-bottom: 2.5rem; }
+  .faq-intro a { color: #2563eb; }
+  section { margin-bottom: 2.5rem; }
+  h2 { font-size: 1.25rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.4rem; margin-bottom: 1rem; }
+  .faq-list { margin: 0; padding: 0; }
+  .faq-item { border-bottom: 1px solid #f3f4f6; padding: 1rem 0; }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-item dt { font-weight: 600; margin-bottom: 0.4rem; }
+  .faq-item dt::before { content: 'Q. '; color: #2563eb; }
+  .faq-item dd { margin: 0; color: #6b7280; line-height: 1.7; }
+  .faq-item dd::before { content: 'A. '; color: #16a34a; font-weight: 600; }
+</style>

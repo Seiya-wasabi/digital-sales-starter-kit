@@ -1,0 +1,87 @@
+---
+import type { Product } from '../lib/config';
+import { getActiveChannels } from '../lib/config';
+
+interface Props {
+  product: Product;
+}
+const { product } = Astro.props;
+const active = getActiveChannels(product.channels);
+const hasChannels = Object.keys(active).length > 0;
+const goUrl = `/go?product=${product.slug}`;
+---
+<article class="product-card">
+  <div class="card-body">
+    <h2 class="card-title">
+      <a href={`/p/${product.slug}`}>{product.title}</a>
+    </h2>
+    {product.subtitle && <p class="card-subtitle">{product.subtitle}</p>}
+    <p class="card-price">{product.price_display}</p>
+    <p class="card-desc">{product.description.slice(0, 100)}...</p>
+    <div class="card-tags">
+      {product.tags_ja.slice(0, 5).map(tag => (
+        <span class="tag">{tag}</span>
+      ))}
+    </div>
+    <div class="card-actions">
+      {hasChannels ? (
+        <a href={goUrl} class="btn-primary">購入する</a>
+      ) : (
+        <span class="btn-disabled">準備中</span>
+      )}
+      <a href={`/p/${product.slug}`} class="btn-secondary">詳しく見る</a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .product-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    transition: box-shadow 0.2s;
+  }
+  .product-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+  .card-body { padding: 1.5rem; }
+  .card-title { font-size: 1.25rem; margin: 0 0 0.5rem; }
+  .card-title a { color: #111; text-decoration: none; }
+  .card-title a:hover { color: #2563eb; }
+  .card-subtitle { color: #6b7280; margin: 0 0 0.75rem; font-size: 0.95rem; }
+  .card-price { font-size: 1.5rem; font-weight: 700; color: #2563eb; margin: 0 0 0.75rem; }
+  .card-desc { color: #374151; font-size: 0.9rem; margin: 0 0 1rem; }
+  .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
+  .tag { background: #eff6ff; color: #1d4ed8; padding: 0.2rem 0.6rem; border-radius: 9999px; font-size: 0.75rem; }
+  .card-actions { display: flex; gap: 0.75rem; }
+  .btn-primary {
+    display: inline-block;
+    background: #2563eb;
+    color: #fff;
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: #1d4ed8; }
+  .btn-secondary {
+    display: inline-block;
+    border: 1px solid #e5e7eb;
+    color: #374151;
+    padding: 0.6rem 1.25rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+  .btn-secondary:hover { background: #f9fafb; }
+  .btn-disabled {
+    display: inline-block;
+    background: #e5e7eb;
+    color: #9ca3af;
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: not-allowed;
+  }
+</style>

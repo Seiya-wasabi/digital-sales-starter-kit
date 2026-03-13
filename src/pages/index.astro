@@ -1,0 +1,143 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ProductCard from '../components/ProductCard.astro';
+import productsData from '../generated/products.json';
+import { ConfigSchema } from '../lib/config';
+
+const config = ConfigSchema.parse(productsData);
+const { products } = config;
+
+const siteTitle = 'Digital Sales Starter Kit (JP)';
+const siteDescription = 'BOOTH・note・Gumroad・BASE・Stripeへの出品から計測・テンプレまで。月1時間運用で販売導線を構築するスターターキット。';
+---
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{siteTitle}</title>
+  <meta name="description" content={siteDescription} />
+  <link rel="canonical" href="/" />
+  <meta property="og:title" content={siteTitle} />
+  <meta property="og:description" content={siteDescription} />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <Header siteTitle={siteTitle} />
+  <main class="main-content">
+    <section class="hero">
+      <h1>デジタルコンテンツ、<br />今日から売り始める。</h1>
+      <p class="hero-sub">
+        設定ファイルを編集するだけで、LP・購入導線・クリック計測・出品テンプレが揃う<br />
+        デジタル販売のオールインワン実行キット。
+      </p>
+      <div class="hero-badges">
+        <span class="badge">無料で開始</span>
+        <span class="badge">PII不要の計測</span>
+        <span class="badge">5販路対応</span>
+        <span class="badge">月1時間運用</span>
+      </div>
+    </section>
+
+    <section class="products-section">
+      <h2>商品一覧</h2>
+      <div class="products-grid">
+        {products.map(product => (
+          <ProductCard product={product} />
+        ))}
+      </div>
+    </section>
+
+    <section class="features-section">
+      <h2>このキットでできること</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">LP</div>
+          <h3>SEO対応LP</h3>
+          <p>JSON-LD・OGP・canonical を自動生成。Astro静的配信で高速表示。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">Cart</div>
+          <h3>5販路への購入導線</h3>
+          <p>BOOTH・note・Gumroad・BASE・Stripeを1箇所で管理。国別スマートルーティング。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">Stats</div>
+          <h3>クリック計測（PIIなし）</h3>
+          <p>チャネル別・商品別のクリック数をCloudflare KVに集計。IPは保存しない。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">Doc</div>
+          <h3>出品原稿テンプレ生成</h3>
+          <p>BOOTH・note・Gumroad・BASE・Stripe向けの出品文をコマンド一発で生成。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">SNS</div>
+          <h3>SNS投稿テンプレ</h3>
+          <p>X・note向けの投稿テンプレートを30本分自動生成。定期投稿を楽に。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">Free</div>
+          <h3>完全無料で稼働</h3>
+          <p>Cloudflare Pages・Workers KV・Web Analyticsの無料枠だけで成立。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing-section">
+      <h2>運用コスト</h2>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>無料で成立する構成</h3>
+          <ul>
+            <li>Cloudflare Pages Free（100,000 req/日）</li>
+            <li>Workers KV Free（100,000 reads/日）</li>
+            <li>Cloudflare Web Analytics（無料）</li>
+            <li>GitHub（無料）</li>
+          </ul>
+          <p class="pricing-total">月額: $0</p>
+        </div>
+        <div class="pricing-card pricing-paid">
+          <h3>月$10〜$30で改善する構成</h3>
+          <ul>
+            <li>Workers Paid $5/月（リクエスト上限緩和）</li>
+            <li>独自ドメイン（レジストラ依存 $10〜$20/年）</li>
+            <li>KV追加ストレージ（必要時）</li>
+          </ul>
+          <p class="pricing-total">月額: $10〜$30</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</body>
+</html>
+
+<style>
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #111; }
+  .main-content { max-width: 1024px; margin: 0 auto; padding: 0 1.5rem; }
+  .hero { text-align: center; padding: 4rem 0 3rem; }
+  .hero h1 { font-size: 2.5rem; line-height: 1.3; margin-bottom: 1rem; }
+  .hero-sub { color: #6b7280; font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.5rem; }
+  .hero-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
+  .badge { background: #eff6ff; color: #1d4ed8; padding: 0.35rem 0.9rem; border-radius: 9999px; font-size: 0.85rem; font-weight: 500; }
+  .products-section, .features-section, .pricing-section { margin-bottom: 4rem; }
+  .products-section h2, .features-section h2, .pricing-section h2 { font-size: 1.75rem; margin-bottom: 1.5rem; }
+  .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
+  .feature-card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 1.25rem; }
+  .feature-icon { font-size: 1.1rem; font-weight: 700; color: #2563eb; margin-bottom: 0.5rem; }
+  .feature-card h3 { margin: 0 0 0.5rem; font-size: 1rem; }
+  .feature-card p { color: #6b7280; font-size: 0.9rem; margin: 0; }
+  .pricing-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+  .pricing-card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.5rem; }
+  .pricing-paid { border-color: #2563eb; background: #eff6ff; }
+  .pricing-card h3 { margin: 0 0 1rem; font-size: 1.1rem; }
+  .pricing-card ul { padding-left: 1.25rem; color: #374151; font-size: 0.9rem; line-height: 1.8; }
+  .pricing-total { font-size: 1.25rem; font-weight: 700; color: #2563eb; margin-top: 1rem; }
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 1.75rem; }
+  }
+</style>

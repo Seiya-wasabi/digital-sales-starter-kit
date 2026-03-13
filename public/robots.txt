@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /stats
+Disallow: /go
+
+Sitemap: https://your-site.pages.dev/sitemap.xml

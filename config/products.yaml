@@ -1,0 +1,53 @@
+products:
+  - slug: digital-sales-starter-kit
+    title: デジタル販売スターターキット（日本語版）
+    subtitle: 月1時間運用で、販売導線と計測まで一気に作る
+    description: |
+      BOOTH・note・Gumroad・BASE・Stripeへの出品から
+      LP作成・クリック計測・SNS投稿テンプレまでをワンセットにした
+      デジタルコンテンツ販売の実行キットです。
+      設定ファイルを編集するだけで、すぐに販売を開始できます。
+    price_display: "9,800円（参考）"
+    price_jpy: 9800
+    currency: JPY
+    channels:
+      booth_url: ""
+      note_url: ""
+      gumroad_url: ""
+      base_url: ""
+      stripe_url: ""
+    faq:
+      - q: このキットは何が含まれますか？
+        a: LP（静的サイト）のソースコード、クリック計測API、出品原稿テンプレ、SNS投稿テンプレ、運用ドキュメント一式が含まれます。
+      - q: プログラミング知識は必要ですか？
+        a: 基本的な設定はYAMLファイルの編集のみです。デプロイにはCloudflare PagesのGitHub連携を使うため、GitHubアカウントがあれば対応できます。
+      - q: 月額費用はいくらかかりますか？
+        a: Cloudflare Pages無料プラン・Workers KV無料枠を使えば月$0で運用できます。月$10〜$30の有料プランに移行すると上限緩和や独自ドメインのSSL管理が楽になります。
+      - q: 購入者のメールアドレスは収集しますか？
+        a: デフォルトでは一切収集しません。クリック計測はPII（個人識別情報）を保存しない設計です。
+      - q: 返金対応はどうなりますか？
+        a: 各プラットフォームのポリシーに準じます。本キットには返金ポリシーのテンプレートも含まれています。
+    tags_ja:
+      - デジタルコンテンツ販売
+      - 副業
+      - ノーコード
+      - BOOTH
+      - note
+      - Gumroad
+      - Cloudflare
+      - LP
+      - 計測
+      - テンプレート
+    tags_en:
+      - digital-sales
+      - side-hustle
+      - no-code
+      - cloudflare-pages
+      - astro
+      - landing-page
+      - analytics
+      - template
+      - japan
+      - ecommerce
+    og_image: /og/digital-sales-starter-kit.png
+    updated_at: "2026-03-13"

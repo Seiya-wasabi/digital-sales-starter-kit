@@ -1,0 +1,52 @@
+---
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>免責事項 | Digital Sales Starter Kit</title>
+  <link rel="canonical" href="/legal/disclaimer" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <Header />
+  <main class="legal-page">
+    <div class="legal-container">
+      <h1>免責事項</h1>
+      <p class="updated">最終更新: 2026-03-13</p>
+
+      <h2>成果の不保証</h2>
+      <p>本キットの使用によって売上・収益・アクセス数などの成果を保証するものではありません。</p>
+
+      <h2>法務・税務助言の非提供</h2>
+      <p>本キットおよびドキュメントは情報提供のみを目的としており、法務・税務・会計上の助言ではありません。
+      特商法記載・利用規約・プライバシーポリシーのテンプレートは参考素材に過ぎず、
+      実際の運用には専門家への確認を強く推奨します。</p>
+
+      <h2>外部サービスへの責任</h2>
+      <p>BOOTH・note・Gumroad・BASE・Stripe・Cloudflareなどの外部サービスの仕様変更、
+      障害、ポリシー変更による損害について責任を負いません。</p>
+
+      <h2>リンク先について</h2>
+      <p>本サイトからリンクされた外部サイトの内容については責任を負いません。</p>
+
+      <h2>損害賠償の限界</h2>
+      <p>本キットに起因して生じた損害の賠償責任は、購入金額を上限とします。</p>
+    </div>
+  </main>
+  <Footer />
+</body>
+</html>
+
+<style>
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #111; }
+  .legal-page { padding: 2rem 1.5rem; }
+  .legal-container { max-width: 800px; margin: 0 auto; }
+  h1 { font-size: 1.75rem; }
+  h2 { font-size: 1.15rem; margin-top: 2rem; }
+  .updated { color: #9ca3af; font-size: 0.85rem; }
+  p { color: #374151; line-height: 1.8; }
+</style>

@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.astro/
+out/
+
+# 環境変数（絶対にコミットしない）
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/settings.json
+*.log

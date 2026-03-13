@@ -1,0 +1,114 @@
+---
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import CTA from '../../components/CTA.astro';
+import productsData from '../../generated/products.json';
+import { ConfigSchema } from '../../lib/config';
+import { buildProductMeta, buildProductJsonLd, buildFaqJsonLd } from '../../lib/seo';
+
+export function getStaticPaths() {
+  const config = ConfigSchema.parse(productsData);
+  return config.products.map(p => ({
+    params: { slug: p.slug },
+    props: { product: p },
+  }));
+}
+
+const { product } = Astro.props;
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const meta = buildProductMeta(product, siteUrl);
+const jsonLd = buildProductJsonLd(product, siteUrl);
+const faqJsonLd = buildFaqJsonLd(product.faq);
+---
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{meta.title}</title>
+  <meta name="description" content={meta.description} />
+  <link rel="canonical" href={meta.canonical} />
+  <meta property="og:title" content={meta.ogTitle} />
+  <meta property="og:description" content={meta.ogDescription} />
+  <meta property="og:image" content={meta.ogImage} />
+  <meta property="og:type" content="product" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+</head>
+<body>
+  <Header />
+  <main class="product-page">
+    <div class="product-container">
+      <nav class="breadcrumb">
+        <a href="/">ホーム</a> &rsaquo; <span>{product.title}</span>
+      </nav>
+
+      <header class="product-header">
+        <h1>{product.title}</h1>
+        {product.subtitle && <p class="product-subtitle">{product.subtitle}</p>}
+        <p class="product-price">{product.price_display}</p>
+        <div class="product-tags">
+          {product.tags_ja.map(tag => <span class="tag">{tag}</span>)}
+        </div>
+      </header>
+
+      <CTA product={product} ref="detail" />
+
+      <section class="product-description">
+        <h2>商品説明</h2>
+        <p>{product.description}</p>
+      </section>
+
+      {product.faq.length > 0 && (
+        <section class="product-faq">
+          <h2>よくある質問</h2>
+          <dl class="faq-list">
+            {product.faq.map(item => (
+              <div class="faq-item">
+                <dt>{item.q}</dt>
+                <dd>{item.a}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      )}
+
+      <CTA product={product} ref="bottom" />
+
+      <div class="product-meta">
+        <p>最終更新: {product.updated_at ?? '—'}</p>
+        <p>対応販路: BOOTH / note / Gumroad / BASE / Stripe</p>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</body>
+</html>
+
+<style>
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #111; }
+  .product-page { padding: 2rem 1.5rem; }
+  .product-container { max-width: 800px; margin: 0 auto; }
+  .breadcrumb { font-size: 0.85rem; color: #9ca3af; margin-bottom: 1.5rem; }
+  .breadcrumb a { color: #6b7280; text-decoration: none; }
+  .breadcrumb a:hover { color: #2563eb; }
+  .product-header { margin-bottom: 2rem; }
+  .product-header h1 { font-size: 2rem; margin: 0 0 0.5rem; }
+  .product-subtitle { font-size: 1.1rem; color: #6b7280; margin: 0 0 0.75rem; }
+  .product-price { font-size: 2rem; font-weight: 700; color: #2563eb; margin: 0.5rem 0; }
+  .product-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+  .tag { background: #eff6ff; color: #1d4ed8; padding: 0.2rem 0.6rem; border-radius: 9999px; font-size: 0.75rem; }
+  .product-description, .product-faq { margin: 2.5rem 0; }
+  .product-description h2, .product-faq h2 { font-size: 1.35rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.5rem; margin-bottom: 1.25rem; }
+  .product-description p { color: #374151; line-height: 1.8; white-space: pre-line; }
+  .faq-list { margin: 0; padding: 0; }
+  .faq-item { border-bottom: 1px solid #f3f4f6; padding: 1rem 0; }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-item dt { font-weight: 600; color: #111; margin-bottom: 0.4rem; }
+  .faq-item dt::before { content: 'Q. '; color: #2563eb; }
+  .faq-item dd { margin: 0; color: #6b7280; line-height: 1.7; }
+  .faq-item dd::before { content: 'A. '; color: #16a34a; font-weight: 600; }
+  .product-meta { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e5e7eb; font-size: 0.8rem; color: #9ca3af; }
+</style>

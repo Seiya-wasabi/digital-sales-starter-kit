@@ -1,0 +1,53 @@
+---
+interface Props {
+  siteTitle?: string;
+}
+const { siteTitle = 'Digital Sales Starter Kit' } = Astro.props;
+---
+<header class="site-header">
+  <nav class="nav-inner">
+    <a href="/" class="site-logo">{siteTitle}</a>
+    <ul class="nav-links">
+      <li><a href="/faq">FAQ</a></li>
+      <li><a href="/contact">お問い合わせ</a></li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .nav-inner {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .site-logo {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #111;
+    text-decoration: none;
+  }
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-links a {
+    color: #6b7280;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .nav-links a:hover { color: #111; }
+</style>

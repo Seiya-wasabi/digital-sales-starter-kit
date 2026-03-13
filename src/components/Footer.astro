@@ -1,0 +1,43 @@
+---
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-links">
+      <a href="/legal/tokushoho">特定商取引法</a>
+      <a href="/legal/terms">利用規約</a>
+      <a href="/legal/privacy">プライバシー</a>
+      <a href="/legal/disclaimer">免責事項</a>
+      <a href="/contact">お問い合わせ</a>
+    </p>
+    <p class="footer-copy">&copy; {year} Digital Sales Starter Kit. All rights reserved.</p>
+    <p class="footer-note">
+      本サイトはデジタルコンテンツ販売のテンプレートです。
+      法務・税務上の助言は含みません。成果を保証するものではありません。
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 4rem;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #6b7280;
+  }
+  .footer-inner { max-width: 1024px; margin: 0 auto; }
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+  .footer-links a { color: #6b7280; text-decoration: none; }
+  .footer-links a:hover { color: #111; }
+  .footer-copy { margin: 0.25rem 0; }
+  .footer-note { font-size: 0.75rem; margin-top: 0.5rem; }
+</style>

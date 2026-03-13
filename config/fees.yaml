@@ -1,0 +1,45 @@
+# 各プラットフォームの手数料（参考値・変更される可能性あり）
+# 必ず公式ページで最新情報を確認してください
+platforms:
+  booth:
+    name: BOOTH
+    currency: JPY
+    fee_rate: 0.22         # 22%（販売手数料）
+    payment_cycle: monthly  # 月次振込
+    notes: "同人・クリエイター向け。pixiv連携でフォロワーへの告知が容易。"
+    official_fee_url: "https://booth.pixiv.help/hc/ja/articles/115004576874"
+
+  note:
+    name: note
+    currency: JPY
+    fee_rate: 0.10         # 10%（手数料。実際は決済手数料も別途）
+    payment_cycle: monthly
+    notes: "記事と販売が一体。SEO流入・購読者への告知が得意。"
+    official_fee_url: "https://www.help-note.com/hc/ja/articles/360011358873"
+
+  gumroad:
+    name: Gumroad
+    currency: USD
+    fee_rate: 0.10         # 10% flat
+    discover_fee: 0.30     # Discover経由は30%
+    payment_cycle: weekly
+    notes: "英語圏向けに強い。Discover経由と直リンクで手数料が大きく異なる点に注意。"
+    official_fee_url: "https://gumroad.com/pricing"
+
+  base:
+    name: BASE
+    currency: JPY
+    fee_rate_service: 0.03   # サービス利用料3%
+    fee_rate_payment: 0.036  # 決済手数料3.6%+40円
+    payment_cycle: monthly
+    notes: "国内EC向け。デジタルコンテンツ配布機能あり。"
+    official_fee_url: "https://help.thebase.in/hc/ja/articles/5701758066585"
+
+  stripe:
+    name: Stripe
+    currency: JPY
+    fee_rate: 0.036        # 3.6%（国内カード）
+    fee_rate_intl: 0.044   # 4.4%（海外カード）
+    payment_cycle: weekly
+    notes: "高粗利。自前LPと組み合わせると手数料が最も低い。Stripe Tax対応。"
+    official_fee_url: "https://stripe.com/jp/pricing"
