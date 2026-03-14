@@ -13,7 +13,7 @@ products:
     channels:
       booth_url: ""
       note_url: ""
-      gumroad_url: ""
+      gumroad_url: "https://lotechnologies.gumroad.com/l/nukjul"
       base_url: ""
       stripe_url: ""
     faq:
