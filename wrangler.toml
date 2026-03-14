@@ -1,0 +1,32 @@
+# Cloudflare Pages + Workers KV 設定
+# デプロイ後に pages_build_output_dir は Cloudflare Dashboard 側で管理されるため、
+# ここでは KV バインドと環境変数の定義のみを記述する
+
+name = "digital-sales-starter-kit"
+compatibility_date = "2024-11-11"
+pages_build_output_dir = "./dist"
+
+# ─────────────────────────────────────────────────────────────
+# KV Namespace
+# 作成手順:
+#   npx wrangler kv namespace create CLICK_STORE
+#   npx wrangler kv namespace create CLICK_STORE --preview
+# 出力された id / preview_id を下記に設定する
+# ─────────────────────────────────────────────────────────────
+[[kv_namespaces]]
+binding = "CLICK_STORE"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+preview_id = "REPLACE_WITH_KV_PREVIEW_NAMESPACE_ID"
+
+# ─────────────────────────────────────────────────────────────
+# 環境変数（シークレットは wrangler secret put で設定）
+# ─────────────────────────────────────────────────────────────
+[vars]
+# ADMIN_TOKEN は wrangler secret で設定（平文をここに書かない）
+# wrangler pages secret put ADMIN_TOKEN
+
+# ─────────────────────────────────────────────────────────────
+# 本番環境
+# ─────────────────────────────────────────────────────────────
+[env.production]
+name = "digital-sales-starter-kit"
