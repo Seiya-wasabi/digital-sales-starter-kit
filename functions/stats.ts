@@ -50,7 +50,7 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
         for (const key of list.keys) {
           if (!key.name.endsWith(`:${date}`)) continue;
           const parts = key.name.split(':');
-          if (parts.length < 5) continue;
+          if (parts.length !== 5) continue;
           const [, product, channel, ref] = parts;
           if (!product || !channel || !ref) continue;
           const val = await kv.get(key.name);

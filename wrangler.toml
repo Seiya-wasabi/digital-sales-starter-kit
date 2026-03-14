@@ -1,10 +1,28 @@
 # Cloudflare Pages + Workers KV 設定
+# =========================================================
+# ⚠️ セットアップ手順（このキットを導入する場合）
+#
+# 1. KV Namespace を作成:
+#    wrangler kv namespace create CLICK_STORE
+#    wrangler kv namespace create CLICK_STORE --preview
+#
+# 2. 上記コマンドで発行された id / preview_id を
+#    下記の YOUR_KV_ID / YOUR_KV_PREVIEW_ID に置き換える
+#
+# 3. GitHub Actions Secrets に以下を設定:
+#    - CLOUDFLARE_API_TOKEN  (Cloudflare ダッシュボード → API Tokens)
+#    - CLOUDFLARE_ACCOUNT_ID (Cloudflare ダッシュボード → 右サイドバーの Account ID)
+#
+# 4. ADMIN_TOKEN を設定:
+#    wrangler pages secret put ADMIN_TOKEN
+# =========================================================
 name = "digital-sales-starter-kit"
 compatibility_date = "2024-11-11"
 pages_build_output_dir = "./dist"
 
 # ─────────────────────────────────────────────────────────────
 # KV Namespace（本番・プレビュー共通）
+# ⚠️ 導入時は自分の KV Namespace ID に書き換えること
 # ─────────────────────────────────────────────────────────────
 [[kv_namespaces]]
 binding = "CLICK_STORE"
@@ -13,5 +31,5 @@ preview_id = "03d94bdcb1444165b21b940b0ccfcc72"
 
 # ─────────────────────────────────────────────────────────────
 # シークレット（平文はここに書かない）
-# 設定済み: wrangler pages secret put ADMIN_TOKEN
+# 設定方法: wrangler pages secret put ADMIN_TOKEN
 # ─────────────────────────────────────────────────────────────
